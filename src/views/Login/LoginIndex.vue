@@ -31,7 +31,8 @@ const notices = [
 ]
 const loginerForm = reactive({
   account: '',
-  password: ''
+  password: '',
+  verify: ''
 })
 const formRef = ref(null)
 // 账号密码登录规则
@@ -103,6 +104,16 @@ const changeDialogVisible = (value) => {
 const handleCommand = (command) => {
   localStorage.setItem('showLoginWay', command)
   showLoginWay.value = command
+}
+
+// 选择权限设置
+const handleChooseVerify = (command) => {
+  if (command === 'firstLevel') {
+    loginerForm.verify = t('messages.First_level')
+  } else if (command === 'secondLevel') {
+    loginerForm.verify = t('messages.Second_level')
+  }
+  console.log(loginerForm.verify)
 }
 
 // 账号密码登录部分
@@ -246,6 +257,23 @@ const submitPhoneForm = (formPhoneRef) => {
               :placeholder="$t('messages.input_pass')"
               show-password
             ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('messages.verify')" prop="password" style="padding-top: 0.6rem">
+            <el-dropdown @command="handleChooseVerify" size="default ">
+              <span class="el-dropdown-link" style="color: #409eff; cursor: pointer">
+                {{ loginerForm.verify ? loginerForm.verify : $t('messages.verify_input') }}
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="firstLevel">{{
+                    $t('messages.First_level')
+                  }}</el-dropdown-item>
+                  <el-dropdown-item command="secondLevel">{{
+                    $t('messages.Second_level')
+                  }}</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </el-form-item>
           <el-form-item>
             <el-dropdown @command="handleCommand">
