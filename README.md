@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vue3-BackSystem-rooki
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -33,3 +34,7 @@ npm run build
 ```sh
 npm run lint
 ```
+=======
+# vue3-librarySystem
+vue3+router+pinia+json-server的管理系统框架
+>>>>>>> ea4805ce448e0894c560dea49fa55a7c6e1a7519
